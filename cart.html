@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DarkZone Store</title>
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body {
+  font-family: "Poppins", sans-serif;
+  background: #0a0a0f;
+  color: #e0f7fa;
+  overflow-x: hidden;
+  margin:0;
+  padding:0;
+}
+/* Navbar Colors */
+.navbar {
+  background: rgba(0,10,20,0.8);
+  backdrop-filter: blur(10px);
+}
+.navbar .navbar-brand {
+  color: #00e5ff;
+  font-weight: 600;
+}
+.navbar .nav-link {
+  color: #e0f7fa !important;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.navbar .nav-link:hover {
+  color: #00e5ff !important;
+}
+.navbar-toggler {
+  border-color: #00e5ff;
+}
+.navbar-toggler-icon {
+  color: #00e5ff;
+  font-size: 1.5em;
+}
+nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 10, 20, 0.8);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  z-index: 100;
+  border-bottom: 1px solid #00ffff33;
+}
+
+nav .logo {
+  font-size: 1.8em;
+  font-weight: 600;
+  color: #00e5ff;
+  letter-spacing: 1px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+nav a {
+  color: #e0f7fa;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #00e5ff;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 2s ease-in;
+}
+
+.hero h1 {
+  font-size: 3.5em;
+  color: #00e5ff;
+  text-shadow: 0 0 20px #00e5ff;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.2em;
+  color: #e0f7fa;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(30px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+section {
+  padding: 100px 10%;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: #00e5ff;
+  text-shadow: 0 0 10px #00e5ff;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.product {
+  background: #12121a;
+  border: 1px solid #00ffff22;
+  border-radius: 10px;
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #00e5ff55;
+}
+
+.product img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.product h3 {
+  margin: 10px 0;
+  color: #e0f7fa;
+}
+
+.product p {
+  color: #00e5ff;
+  font-weight: bold;
+}
+
+.btn {
+  background: #00e5ff;
+  color: #000;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #00bcd4;
+  box-shadow: 0 0 10px #00e5ff;
+}
+
+.why, .about, .testimonials {
+  background: #0f0f16;
+  border-top: 1px solid #00ffff22;
+}
+
+.testimonial {
+  background: #12121a;
+  margin: 15px;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #00e5ff22;
+}
+
+footer {
+  background: #05050a;
+  padding: 30px;
+  text-align: center;
+  color: #aaa;
+  border-top: 1px solid #00ffff22;
+}
+
+/* Cart Modal */
+#cart-modal {
+  display:none; 
+  position:fixed; 
+  top:50%; left:50%; 
+  transform:translate(-50%,-50%); 
+  background:#12121a; 
+  padding:30px; 
+  border-radius:15px; 
+  width:400px; 
+  max-height:80vh; 
+  overflow-y:auto; 
+  box-shadow:0 0 20px #00e5ff; 
+  z-index:1001;
+}
+
+#cart {
+  position:fixed; 
+  bottom:20px; 
+  right:20px; 
+  background:#00e5ff; 
+  color:#000; 
+  padding:15px 20px; 
+  border-radius:50px; 
+  cursor:pointer; 
+  z-index:1000;
+}
+
+/* Search Bar */
+#search-bar {
+  margin-bottom: 30px;
+}
+
+/* Fly-to-cart animation */
+.flying-img {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+  z-index: 1000;
+  pointer-events: none;
+  border-radius: 8px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Responsive Navbar for Index Page -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">DarkZone Store</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" style="color:#00e5ff; font-size:1.5em;">&#9776;</span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#products">Featured</a></li>
+        <li class="nav-item"><a class="nav-link" href="#product">Products</a></li>
+        <li class="nav-item"><a class="nav-link" href="#why">Why Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+        <li class="nav-item"><a class="nav-link" href="order.html">Cart / Order</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <canvas id="dots"></canvas>
+  <div class="hero-content">
+    <h1>Welcome to DarkZone</h1>
+    <p>Your Tech Universe in PKR</p>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="about">
+  <h2>About Us</h2>
+  <p>DarkZone Store is your ultimate destination for premium gadgets, cutting-edge tech, and a next-level shopping experience built for Pakistan.</p>
+</section>
+
+<!-- Featured Products -->
+<section id="products">
+  <h2>Featured Products</h2>
+  <div class="products">
+    <div class="product">
+      <img src="https://via.placeholder.com/250x150" alt="">
+      <h3>Gaming Headset</h3>
+      <p>PKR 7,499</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://via.placeholder.com/250x150" alt="">
+      <h3>RGB Keyboard</h3>
+      <p>PKR 4,999</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://via.placeholder.com/250x150" alt="">
+      <h3>Wireless Mouse</h3>
+      <p>PKR 2,199</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section id="why" class="why">
+  <h2>Why Choose Us?</h2>
+  <p>Because we deliver futuristic products, top-notch quality, and secure shopping with unbeatable prices.</p>
+</section>
+
+<!-- Products Section + Search -->
+<section id="product">
+  <h2>All Products</h2>
+  <input type="text" id="search-bar" class="form-control" placeholder="Search products...">
+  <div class="products" id="all-products">
+
+    <!-- 1-20 -->
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Gaming Headset"><h3>Gaming Headset</h3><p>PKR 7,499</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="RGB Keyboard"><h3>RGB Keyboard</h3><p>PKR 4,999</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Wireless Mouse"><h3>Wireless Mouse</h3><p>PKR 2,199</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Mechanical Keyboard"><h3>Mechanical Keyboard</h3><p>PKR 6,499</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Gaming Chair"><h3>Gaming Chair</h3><p>PKR 14,999</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="HD Webcam"><h3>HD Webcam</h3><p>PKR 3,299</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="LED Monitor"><h3>LED Monitor 24"</h3><p>PKR 12,499</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="External HDD"><h3>External HDD 1TB</h3><p>PKR 5,799</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Laptop Backpack"><h3>Laptop Backpack</h3><p>PKR 2,499</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Smartwatch"><h3>Phantom Smartwatch</h3><p>PKR 8,999</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Bluetooth Speaker"><h3>Bluetooth Speaker</h3><p>PKR 4,299</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="VR Headset"><h3>VR Headset</h3><p>PKR 19,499</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Gaming Console"><h3>GameBox Console</h3><p>PKR 35,999</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Graphics Tablet"><h3>Graphics Tablet</h3><p>PKR 9,799</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="RGB Mousepad"><h3>RGB Mousepad</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Laptop Stand"><h3>Adjustable Laptop Stand</h3><p>PKR 2,199</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="USB Hub"><h3>USB Hub 4 Ports</h3><p>PKR 899</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Portable Charger"><h3>Portable Charger 10000mAh</h3><p>PKR 1,799</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Smart LED Lamp"><h3>Smart LED Lamp</h3><p>PKR 2,599</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Headphone Stand"><h3>Headphone Stand</h3><p>PKR 999</p><button class="btn">Add to Cart</button></div>
+
+    <!-- 21-40 -->
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Noise Cancelling Earphones"><h3>Noise Cancelling Earphones</h3><p>PKR 3,999</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Smart Thermostat"><h3>Smart Thermostat</h3><p>PKR 12,499</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Drone Quadcopter"><h3>Drone Quadcopter</h3><p>PKR 29,999</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Action Camera"><h3>Action Camera</h3><p>PKR 15,499</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Smart Glasses"><h3>Smart Glasses</h3><p>PKR 9,999</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="WiFi Extender"><h3>WiFi Extender</h3><p>PKR 2,799</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="LED Strip Light"><h3>LED Strip Light</h3><p>PKR 1,599</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Portable SSD"><h3>Portable SSD 512GB</h3><p>PKR 8,499</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Smart Door Lock"><h3>Smart Door Lock</h3><p>PKR 19,999</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Wireless Charger"><h3>Wireless Charger</h3><p>PKR 1,999</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Bluetooth Earbuds"><h3>Bluetooth Earbuds</h3><p>PKR 3,299</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Laptop Cooling Pad"><h3>Laptop Cooling Pad</h3><p>PKR 1,899</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Smart Scale"><h3>Smart Body Scale</h3><p>PKR 2,499</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Fitness Tracker"><h3>Fitness Tracker</h3><p>PKR 5,499</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="LED Desk Lamp"><h3>LED Desk Lamp</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Mini Projector"><h3>Mini Projector</h3><p>PKR 13,499</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Gaming Mat"><h3>Gaming Mat</h3><p>PKR 1,499</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Smart Light Bulb"><h3>Smart Light Bulb</h3><p>PKR 799</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Mechanical Pencil"><h3>Stylish Mechanical Pencil</h3><p>PKR 199</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="HDMI Cable"><h3>HDMI Cable 2m</h3><p>PKR 499</p><button class="btn">Add to Cart</button></div>
+
+    <!-- 41-60 -->
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Smartphone Stand"><h3>Smartphone Stand</h3><p>PKR 699</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="VR Gloves"><h3>VR Gloves</h3><p>PKR 6,999</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Microphone"><h3>USB Microphone</h3><p>PKR 4,199</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Smart Plug"><h3>Smart Plug</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Gaming Desk"><h3>Gaming Desk</h3><p>PKR 16,499</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Laptop Bag"><h3>Laptop Bag</h3><p>PKR 2,199</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Camera Tripod"><h3>Camera Tripod</h3><p>PKR 1,899</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Smart Thermometer"><h3>Smart Thermometer</h3><p>PKR 1,499</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Gaming Controller"><h3>Gaming Controller</h3><p>PKR 3,999</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Desk Organizer"><h3>Desk Organizer</h3><p>PKR 899</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Smart Ring"><h3>Smart Ring</h3><p>PKR 4,499</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Wireless Adapter"><h3>Wireless Adapter</h3><p>PKR 699</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Noise Cancelling Headphones"><h3>Noise Cancelling Headphones</h3><p>PKR 12,499</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Smart Camera"><h3>Smart Security Camera</h3><p>PKR 5,999</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Bluetooth Tracker"><h3>Bluetooth Tracker</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Portable Fan"><h3>Portable USB Fan</h3><p>PKR 799</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Desk Lamp"><h3>Desk Lamp with USB</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Smart Water Bottle"><h3>Smart Water Bottle</h3><p>PKR 1,899</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Laptop Sleeve"><h3>Laptop Sleeve 15"</h3><p>PKR 1,199</p><button class="btn">Add to Cart</button></div>
+    <div class="product"><img src="https://via.placeholder.com/250x150" alt="Power Strip"><h3>Smart Power Strip</h3><p>PKR 1,499</p><button class="btn">Add to Cart</button></div>
+
+  </div>
+</section>
+
+
+<!-- Testimonials -->
+<section id="testimonials" class="testimonials">
+  <h2>Testimonials</h2>
+  <div class="testimonial">
+    <p>“DarkZone Store made my setup look insane — top quality gear!”</p>
+    <strong>— Ahsan</strong>
+  </div>
+  <div class="testimonial">
+    <p>“Fast delivery, amazing prices, and perfect packaging.”</p>
+    <strong>— Sara</strong>
+  </div>
+</section>
+
+<footer>
+  © 2025 DarkZone Store | Made for Tech Expo 💡
+</footer>
+
+<!-- Cart Icon & Modal -->
+<div id="cart" onclick="openCart()">🛒 Cart (<span id="cart-count">0</span>)</div>
+<div id="cart-modal">
+  <h3>Your Cart</h3>
+  <div id="cart-items"></div>
+  <h4>Total: PKR <span id="cart-total">0</span></h4>
+  <button onclick="closeCart()" class="btn">Close</button>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ===== Particle Background =====
+const canvas = document.getElementById("dots");
+const ctx = canvas.getContext("2d");
+let w, h, particles = [];
+function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+window.addEventListener("resize", resize);
+resize();
+
+class Particle {
+  constructor() { this.x = Math.random()*w; this.y = Math.random()*h; this.size=Math.random()*2; this.speedX=Math.random()*0.6-0.3; this.speedY=Math.random()*0.6-0.3; }
+  update(){ this.x+=this.speedX; this.y+=this.speedY; if(this.x<0||this.x>w)this.speedX*=-1; if(this.y<0||this.y>h)this.speedY*=-1; }
+  draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fillStyle="#00e5ff"; ctx.shadowBlur=10; ctx.shadowColor="#00e5ff"; ctx.fill(); }
+}
+
+function initParticles(){ particles=[]; for(let i=0;i<120;i++){particles.push(new Particle());}}
+function animateParticles(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animateParticles);}
+initParticles(); animateParticles();
+
+// ===== Search Functionality =====
+const searchInput = document.getElementById("search-bar");
+searchInput.addEventListener("input", ()=>{
+  const filter = searchInput.value.toLowerCase();
+  document.querySelectorAll("#all-products .product").forEach(product=>{
+    const text = product.querySelector("h3").textContent.toLowerCase();
+    product.style.display = text.includes(filter)?"":"none";
+  });
+});
+
+// ===== Add to Cart =====
+let cart = [];
+
+function updateCartDisplay(){
+  const cartItemsDiv = document.getElementById("cart-items");
+  const cartTotalSpan = document.getElementById("cart-total");
+  const cartCountSpan = document.getElementById("cart-count");
+  cartItemsDiv.innerHTML = "";
+  let total = 0;
+  cart.forEach((item,index)=>{
+    total+=item.price*item.quantity;
+    const div=document.createElement("div");
+    div.style.marginBottom="10px";
+    div.innerHTML=`<strong>${item.name}</strong> - PKR ${item.price} x ${item.quantity} 
+    <div style="display:inline-block; margin-left:10px;">
+      <button onclick="decreaseQty(${index})" class="btn btn-sm">-</button>
+      <button onclick="increaseQty(${index})" class="btn btn-sm">+</button>
+      <button onclick="removeFromCart(${index})" class="btn btn-sm">Remove</button>
+    </div>`;
+    cartItemsDiv.appendChild(div);
+  });
+  cartTotalSpan.textContent=total;
+  cartCountSpan.textContent=cart.length;
+}
+
+function addToCart(name,price){
+  const existing=cart.find(item=>item.name===name);
+  if(existing){existing.quantity++;} else {cart.push({name,price,quantity:1});}
+  updateCartDisplay();
+  alert(`${name} added to cart!`);
+}
+
+function removeFromCart(index){ cart.splice(index,1); updateCartDisplay();}
+function increaseQty(index){ cart[index].quantity++; updateCartDisplay();}
+function decreaseQty(index){ if(cart[index].quantity>1){cart[index].quantity--;}else{cart.splice(index,1);} updateCartDisplay();}
+function openCart(){document.getElementById("cart-modal").style.display="block";}
+function closeCart(){document.getElementById("cart-modal").style.display="none";}
+
+// Attach Add-to-Cart Buttons
+document.querySelectorAll("#all-products .product .btn").forEach(button=>{
+  button.addEventListener("click",()=>{
+    const product = button.parentElement;
+    const name = product.querySelector("h3").textContent;
+    const priceText = product.querySelector("p").textContent.replace("PKR ","").replace(/,/g,"");
+    const price = parseInt(priceText);
+    addToCart(name,price);
+  });
+});
+
+document.querySelectorAll("#all-products .product .btn").forEach(button => {
+  button.addEventListener("click", (e) => {
+    const product = button.parentElement;
+    const name = product.querySelector("h3").textContent;
+    const priceText = product.querySelector("p").textContent.replace("PKR ","").replace(/,/g,"");
+    const price = parseInt(priceText);
+
+    addToCart(name, price); // Existing cart logic
+
+    // ===== Flying animation =====
+    const img = product.querySelector("img");
+    const flyingImg = img.cloneNode(true);
+    flyingImg.classList.add("flying-img");
+    document.body.appendChild(flyingImg);
+
+    const imgRect = img.getBoundingClientRect();
+    const cartIcon = document.getElementById("cart");
+    const cartRect = cartIcon.getBoundingClientRect();
+
+    flyingImg.style.left = imgRect.left + "px";
+    flyingImg.style.top = imgRect.top + "px";
+
+    setTimeout(() => {
+      flyingImg.style.transform = `translate(${cartRect.left - imgRect.left}px, ${cartRect.top - imgRect.top}px) scale(0.2)`;
+      flyingImg.style.opacity = 0;
+    }, 10);
+
+    flyingImg.addEventListener("transitionend", () => flyingImg.remove());
+  });
+});
+
+</script>
+</body>
+</html>
