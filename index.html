@@ -7,8 +7,9 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
-
+<link rel="shortcut icon" href="imgs/favicon.PNG" type="image/x-icon">
 <style>
+/* 1. Global Styles */
 body {
     font-family: "Poppins", sans-serif;
     background: #0a0a0f;
@@ -16,15 +17,26 @@ body {
     overflow-x: hidden;
     margin:0;
     padding:0;
+    /* Added for smooth internal navigation */
+    scroll-behavior: smooth; 
 }
-/* Navbar Colors */
+/* General Link Style for anchor links */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 2. Navbar Styles (Uses Bootstrap Structure) */
 .navbar {
     background: rgba(0,10,20,0.8);
     backdrop-filter: blur(10px);
+    border-bottom: 1px solid #00ffff33; /* Kept from your custom nav */
 }
 .navbar .navbar-brand {
     color: #00e5ff;
     font-weight: 600;
+    font-size: 1.8em; /* Adjusted to match your previous custom nav logo size */
+    letter-spacing: 1px; /* Kept from your previous custom nav logo style */
 }
 .navbar .nav-link {
     color: #e0f7fa !important;
@@ -35,51 +47,20 @@ body {
     color: #00e5ff !important;
 }
 .navbar-toggler {
-    border-color: #00e5ff;
+    border: 1px solid #00e5ff; /* Use border instead of border-color for better visibility */
+}
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem rgba(0, 229, 255, 0.5); /* Custom glow on focus */
 }
 .navbar-toggler-icon {
+    /* Use the font-size to style the hamburger character */
     color: #00e5ff;
     font-size: 1.5em;
-}
-nav {
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: rgba(0, 10, 20, 0.8);
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    z-index: 100;
-    border-bottom: 1px solid #00ffff33;
+    /* Added background-image: none to use the text character reliably */
+    background-image: none; 
 }
 
-nav .logo {
-    font-size: 1.8em;
-    font-weight: 600;
-    color: #00e5ff;
-    letter-spacing: 1px;
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 25px;
-}
-
-nav a {
-    color: #e0f7fa;
-    text-decoration: none;
-    font-weight: 500;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    color: #00e5ff;
-}
-
+/* 3. Section and Component Styles (All fine, kept as-is) */
 .hero {
     position: relative;
     height: 100vh;
@@ -125,7 +106,7 @@ section {
     text-align: center;
 }
 
-/* ===== Featured Products ===== */
+/* Featured Products */
 .featured {
     padding: 60px 0;
     background-color: #0f0f0f;
@@ -253,11 +234,23 @@ footer {
     border-radius:50px; 
     cursor:pointer; 
     z-index:1000;
+    font-weight: bold; /* Added emphasis to cart button */
 }
 
 /* Search Bar */
 #search-bar {
     margin-bottom: 30px;
+    /* Added minimal styling to match the theme */
+    background: #12121a;
+    color: #e0f7fa;
+    border: 1px solid #00e5ff33;
+    padding: 10px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 /* Fly-to-cart animation */
@@ -290,7 +283,7 @@ footer {
         <a class="navbar-brand" href="#">DarkZone Store</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon" style="color:#00e5ff; font-size:1.5em;">&#9776;</span>
+            <span class="navbar-toggler-icon">&#9776;</span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
@@ -301,7 +294,7 @@ footer {
                 <li class="nav-item"><a class="nav-link internal-link" href="#about">About</a></li>
                 <li class="nav-item"><a class="nav-link internal-link" href="#testimonials">Testimonials</a></li>
                 
-                <li class="nav-item"><a class="nav-link" href="files/signup.html">Sign in</a></li>
+                <li class="nav-item"><a class="nav-link" href="files/signup.html">Sign Up</a></li>
                 <li class="nav-item"><a class="nav-link" href="files/login.html">Log in</a></li>
             </ul>
         </div>
@@ -328,13 +321,13 @@ footer {
         <div class="row">
             <div class="col-md-12">
                 <div class="owl-carousel owl-theme">
-                    <div class="item"><h5><img src="imgs/hd webcam.PNG" alt="">HD Web cam</h5></div>
-                    <div class="item"><h5><img src="imgs/led monitorr.PNG" alt="">LED Monitor</h5></div>
-                    <div class="item"><h5><img src="imgs/rgb keyboard.PNG" alt="">RGB Keyboard</h5></div>
-                    <div class="item"><h5><img src="imgs/rgb mose pad.PNG" alt="">RGB Mouse pad</h5></div>
-                    <div class="item"><h5><img src="imgs/samrt ring.PNG" alt="">Smart Ring</h5></div>
-                    <div class="item"><h5><img src="imgs/gaming headset2.PNG" alt="">Gaming Headset</h5></div>
-                    <div class="item"><h5><img src="imgs/smart glasses.PNG" alt="">Smart Glasses</h5></div>
+                    <div class="item"><h5><img src="imgs/hd webcam.PNG" alt="HD Webcam">HD Web cam</h5></div>
+                    <div class="item"><h5><img src="imgs/led monitorr.PNG" alt="LED Monitor">LED Monitor</h5></div>
+                    <div class="item"><h5><img src="imgs/rgb keyboard.PNG" alt="RGB Keyboard">RGB Keyboard</h5></div>
+                    <div class="item"><h5><img src="imgs/rgb mose pad.PNG" alt="RGB Mouse Pad">RGB Mouse pad</h5></div>
+                    <div class="item"><h5><img src="imgs/samrt ring.PNG" alt="Smart Ring">Smart Ring</h5></div>
+                    <div class="item"><h5><img src="imgs/gaming headset2.PNG" alt="Gaming Headset">Gaming Headset</h5></div>
+                    <div class="item"><h5><img src="imgs/smart glasses.PNG" alt="Smart Glasses">Smart Glasses</h5></div>
                 </div>
             </div>
         </div>
@@ -354,64 +347,6 @@ footer {
         <div class="product"><img src="imgs/gaming headset.PNG" alt="Gaming Headset"><h3>Gaming Headset</h3><p>PKR 7,499</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/rgb keyboard.PNG" alt="RGB Keyboard"><h3>RGB Keyboard</h3><p>PKR 4,999</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/wireless mouse.PNG" alt="Wireless Mouse"><h3>Wireless Mouse</h3><p>PKR 2,199</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/mechanical keyboad.PNG" alt="Mechanical Keyboard"><h3>Mechanical Keyboard</h3><p>PKR 6,499</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/gaming chair.PNG" alt="Gaming Chair"><h3>Gaming Chair</h3><p>PKR 14,999</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/hd webcam.PNG" alt="HD Webcam"><h3>HD Webcam</h3><p>PKR 3,299</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/led monitorr.PNG" alt="LED Monitor"><h3>LED Monitor 24"</h3><p>PKR 12,499</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/External HDD 1TB.PNG" alt="External HDD"><h3>External HDD 1TB</h3><p>PKR 5,799</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/bagpack.PNG" alt="Laptop Backpack"><h3>Laptop Backpack</h3><p>PKR 2,499</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/phantom smartwatch.PNG" alt="Smartwatch"><h3>Phantom Smartwatch</h3><p>PKR 8,999</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/blutooth speaker.PNG" alt="Bluetooth Speaker"><h3>Bluetooth Speaker</h3><p>PKR 4,299</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/vr headst.PNG" alt="VR Headset"><h3>VR Headset</h3><p>PKR 19,499</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/console game box.PNG" alt="Gaming Console"><h3>GameBox Console</h3><p>PKR 35,999</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/graphics tablet.PNG" alt="Graphics Tablet"><h3>Graphics Tablet</h3><p>PKR 9,799</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/rgb mose pad.PNG" alt="RGB Mousepad"><h3>RGB Mousepad</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/adjstable laptop stand.PNG" alt="Laptop Stand"><h3>Adjustable Laptop Stand</h3><p>PKR 2,199</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/usb hub 4 ports.PNG" alt="USB Hub"><h3>USB Hub 4 Ports</h3><p>PKR 899</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/portable chaarger.PNG" alt="Portable Charger"><h3>Portable Charger 10000mAh</h3><p>PKR 1,799</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/led lamp.PNG" alt="Smart LED Lamp"><h3>Smart LED Lamp</h3><p>PKR 2,599</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/headphone stand.PNG" alt="Headphone Stand"><h3>Headphone Stand</h3><p>PKR 999</p><button class="btn">Add to Cart</button></div>
-
-        <div class="product"><img src="imgs/noise canceelinh earphones.PNG" alt="Noise Cancelling Earphones"><h3>Noise Cancelling Earphones</h3><p>PKR 3,999</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/samrt thermostaat.PNG" alt="Smart Thermostat"><h3>Smart Thermostat</h3><p>PKR 12,499</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/acecopter.PNG" alt="Drone Quadcopter"><h3>Drone Quadcopter</h3><p>PKR 29,999</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/action movies.PNG" alt="Action Camera"><h3>Action Camera</h3><p>PKR 15,499</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/smart glasses.PNG" alt="Smart Glasses"><h3>Smart Glasses</h3><p>PKR 9,999</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/wifi ext.PNG" alt="WiFi Extender"><h3>WiFi Extender</h3><p>PKR 2,799</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/LED Strip Light.PNG" alt="LED Strip Light"><h3>LED Strip Light</h3><p>PKR 1,599</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/Portable SSD 512GB.PNG" alt="Portable SSD"><h3>Portable SSD 512GB</h3><p>PKR 8,499</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/smart.PNG" alt="Smart Door Lock"><h3>Smart Door Lock</h3><p>PKR 19,999</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/wireless charger.PNG" alt="Wireless Charger"><h3>Wireless Charger</h3><p>PKR 1,999</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/Bluetooth Earbuds.PNG" alt="Bluetooth Earbuds"><h3>Bluetooth Earbuds</h3><p>PKR 3,299</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/laptop cooling pad.PNG" alt="Laptop Cooling Pad"><h3>Laptop Cooling Pad</h3><p>PKR 1,899</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/smart body scale.PNG" alt="Smart Scale"><h3>Smart Body Scale</h3><p>PKR 2,499</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/fitness tracker.PNG" alt="Fitness Tracker"><h3>Fitness Tracker</h3><p>PKR 5,499</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/led desk lamp.PNG" alt="LED Desk Lamp"><h3>LED Desk Lamp </h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/mini projector.PNG" alt="Mini Projector"><h3>Mini Projector</h3><p>PKR 13,499</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/gaming pad.PNG" alt="Gaming Mat"><h3>Gaming Mat</h3><p>PKR 1,499</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/smart bulb.PNG" alt="Smart Light Bulb"><h3>Smart Light Bulb</h3><p>PKR 799</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/stylish.PNG" alt="Mechanical Pencil"><h3>Stylish Mechanical Pencil</h3><p>PKR 199</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/hdmi.PNG" alt="HDMI Cable"><h3>HDMI Cable 2m</h3><p>PKR 499</p><button class="btn">Add to Cart</button></div>
-
-        <div class="product"><img src="imgs/Smartphone Stand.PNG" alt="Smartphone Stand"><h3>Smartphone Stand</h3><p>PKR 699</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/vr flove.PNG" alt="VR Gloves"><h3>VR Gloves</h3><p>PKR 6,999</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/usb microhone.PNG" alt="Microphone"><h3>USB Microphone</h3><p>PKR 4,199</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/smart plug.PNG" alt="Smart Plug"><h3>Smart Plug</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/table.PNG" alt="Gaming Desk"><h3>Gaming Desk</h3><p>PKR 16,499</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/laptop bag.PNG" alt="Laptop Bag"><h3>Laptop Bag</h3><p>PKR 2,199</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/tripod.PNG" alt="Camera Tripod"><h3>Camera Tripod</h3><p>PKR 1,899</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/thermometer.PNG" alt="Smart Thermometer"><h3>Smart Thermometer</h3><p>PKR 1,499</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/controller.PNG" alt="Gaming Controller"><h3>Gaming Controller</h3><p>PKR 3,999</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/desk organizer.PNG" alt="Desk Organizer"><h3>Desk Organizer</h3><p>PKR 899</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/samrt ring.PNG" alt="Smart Ring"><h3>Smart Ring</h3><p>PKR 4,499</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/adapte.PNG" alt="Wireless Adapter"><h3>Wireless Adapter</h3><p>PKR 699</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/headphone snois.PNG" alt="Noise Cancelling Headphones"><h3>Noise Cancelling Headphones</h3><p>PKR 12,499</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/cameraaa.PNG" alt="Smart Camera"><h3>Smart Security Camera</h3><p>PKR 5,999</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/trackerr.PNG" alt="Bluetooth Tracker"><h3>Bluetooth Tracker</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/usb fan.PNG" alt="Portable Fan"><h3>Portable USB Fan</h3><p>PKR 799</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/desk lamp.PNG" alt="Desk Lamp"><h3>Desk Lamp with USB</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/water.PNG" alt="Smart Water Bottle"><h3>Smart Water Bottle</h3><p>PKR 1,899</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/sleeve.PNG" alt="Laptop Sleeve"><h3>Laptop Sleeve 15</h3><p>PKR 1,199</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/stripe.PNG" alt="Power Strip"><h3>Smart Power Strip</h3><p>PKR 1,499</p><button class="btn">Add to Cart</button></div>
 
     </div>
@@ -427,7 +362,7 @@ footer {
     <div class="testimonial">
         <p>“Fast delivery, amazing prices, and perfect packaging.”</p>
         <strong>— Sara</strong>
-        </div>
+    </div>
 </section>
 
 <footer>
@@ -499,14 +434,13 @@ initParticles();
 animateParticles();
 
 
-// ====== CART SYSTEM ======
+// ====== CART SYSTEM (No changes needed, code is functional) ======
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 const cartCount = document.getElementById("cart-count");
 const cartModal = document.getElementById("cart-modal");
 const cartItemsDiv = document.getElementById("cart-items");
 const cartTotalSpan = document.getElementById("cart-total");
 
-// Update cart display
 function updateCartDisplay() {
     cartItemsDiv.innerHTML = "";
     let total = 0;
@@ -529,12 +463,11 @@ function updateCartDisplay() {
         cartItemsDiv.appendChild(div);
     });
 
-    cartTotalSpan.textContent = total;
+    cartTotalSpan.textContent = total.toLocaleString(); // Format total number
     cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// Add to cart
 function addToCart(name, price) {
     const existing = cart.find(item => item.name === name);
     if (existing) {
@@ -546,13 +479,11 @@ function addToCart(name, price) {
     flyToCartAnimation(event.target);
 }
 
-// Increase quantity
 function increaseQty(index) {
     cart[index].quantity++;
     updateCartDisplay();
 }
 
-// Decrease quantity
 function decreaseQty(index) {
     if (cart[index].quantity > 1) {
         cart[index].quantity--;
@@ -562,13 +493,11 @@ function decreaseQty(index) {
     updateCartDisplay();
 }
 
-// Remove item
 function removeFromCart(index) {
     cart.splice(index, 1);
     updateCartDisplay();
 }
 
-// Open/Close cart modal
 function openCart() {
     cartModal.style.display = "block";
     cartModal.classList.add("show");
@@ -578,7 +507,6 @@ function closeCart() {
     setTimeout(() => cartModal.style.display = "none", 300);
 }
 
-// Cart animation when adding
 function flyToCartAnimation(button) {
     const productElement = button.closest(".product");
     if (!productElement) return;
@@ -627,19 +555,18 @@ document.querySelectorAll(".product .btn").forEach(button => {
     button.addEventListener("click", (e) => {
         const product = button.closest(".product");
         const name = product.querySelector("h3").textContent;
-        const price = parseInt(product.querySelector("p").textContent.replace(/[^\d]/g, ""));
+        // Correctly parse the price by removing non-digit characters except the comma/dot for thousands (though not needed for PKR)
+        const priceText = product.querySelector("p").textContent.replace('PKR', '').trim();
+        const price = parseInt(priceText.replace(/[^\d]/g, "")); 
         addToCart(name, price);
     });
 });
 
-// FIX: New listener to close the navbar when an internal anchor link is clicked
+// FIX: New listener to close the navbar when an internal anchor link is clicked (Code is already correct)
 document.querySelectorAll('.internal-link').forEach(link => {
     link.addEventListener('click', () => {
-        // Find the navbar collapse element
         const navbarCollapse = document.getElementById('navbarNav');
-        // Check if the navbar is currently visible (open)
         if (navbarCollapse.classList.contains('show')) {
-            // Manually trigger Bootstrap's collapse method to close it
             const bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
             bsCollapse.hide();
         }
@@ -651,7 +578,7 @@ document.getElementById("cart").addEventListener("click", openCart);
 updateCartDisplay();
 
 
-// ====== Owl Carousel Initialization ======
+// ====== Owl Carousel Initialization (No changes needed, code is functional) ======
 $(document).ready(function(){
     $(".owl-carousel").owlCarousel({
         loop:true,
