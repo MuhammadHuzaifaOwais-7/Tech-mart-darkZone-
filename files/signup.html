@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - TechMart</title>
+  <title>Sign Up - TechMart</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
     body {
@@ -26,13 +26,13 @@
       text-align: center;
       width: 320px;
       backdrop-filter: blur(10px);
-      animation: slideIn 1s ease;
+      animation: popIn 1s ease;
       margin-top: 80px;
     }
 
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     input {
@@ -143,20 +143,17 @@
     <div class="logo">TechMart</div>
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <ul id="menuList">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="products.html">Products</a></li>
-      <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
-      <li><a href="signup.html">Sign Up</a></li>
+      <li><a href="../index.html">Home</a></li>
       <li><a href="login.html">Login</a></li>
     </ul>
   </nav>
 
   <div class="auth-box">
-    <h2>Login to TechMart</h2>
-    <input type="text" id="loginUser" placeholder="Enter Username">
-    <input type="password" id="loginPass" placeholder="Enter Password">
-    <button onclick="login()">Login</button>
-    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+    <h2>Create Account</h2>
+    <input type="text" id="signupUser" placeholder="Enter Username">
+    <input type="password" id="signupPass" placeholder="Enter Password">
+    <button onclick="signup()">Sign Up</button>
+    <p>Already have an account? <a href="login.html">Login</a></p>
   </div>
 
   <script>
@@ -164,50 +161,43 @@
       document.getElementById("menuList").classList.toggle("active");
     }
 
-    function login() {
-      const user = document.getElementById("loginUser").value.trim();
-      const pass = document.getElementById("loginPass").value.trim();
-      const storedData = JSON.parse(localStorage.getItem("techmartUser"));
+    function signup() {
+      const user = document.getElementById("signupUser").value.trim();
+      const pass = document.getElementById("signupPass").value.trim();
 
-      if (!storedData) {
-        alert("⚠️ No account found! Please sign up first.");
-        window.location.href = "signup.html";
+      if (!user || !pass) {
+        alert("⚠️ Please fill in all fields!");
         return;
       }
 
-      if (user === storedData.username && pass === storedData.password) {
-        localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("techmartUser", JSON.stringify({ username: user, password: pass }));
 
-        // ✅ Animated success message
-        const msg = document.createElement("div");
-        msg.textContent = "✅ Logged in successfully!";
-        msg.style.position = "fixed";
-        msg.style.top = "20px";
-        msg.style.left = "50%";
-        msg.style.transform = "translateX(-50%)";
-        msg.style.background = "#00f5ff";
-        msg.style.color = "#000";
-        msg.style.padding = "10px 20px";
-        msg.style.borderRadius = "10px";
-        msg.style.fontWeight = "bold";
-        msg.style.boxShadow = "0 0 15px #00f5ff";
-        msg.style.transition = "opacity 0.5s ease";
-        msg.style.zIndex = "9999";
-        document.body.appendChild(msg);
+      // ✅ Show success message
+      const msg = document.createElement("div");
+      msg.textContent = "✅ Account created successfully!";
+      msg.style.position = "fixed";
+      msg.style.top = "20px";
+      msg.style.left = "50%";
+      msg.style.transform = "translateX(-50%)";
+      msg.style.background = "#00f5ff";
+      msg.style.color = "#000";
+      msg.style.padding = "10px 20px";
+      msg.style.borderRadius = "10px";
+      msg.style.fontWeight = "bold";
+      msg.style.boxShadow = "0 0 15px #00f5ff";
+      msg.style.transition = "opacity 0.5s ease";
+      msg.style.zIndex = "9999";
+      document.body.appendChild(msg);
 
-        // Fade out and redirect
-        setTimeout(() => {
-          msg.style.opacity = "0";
-        }, 1500);
+      // Fade out + redirect
+      setTimeout(() => {
+        msg.style.opacity = "0";
+      }, 1500);
 
-        setTimeout(() => {
-          msg.remove();
-          window.location.href = "products.html";
-        }, 2000);
-
-      } else {
-        alert("❌ Incorrect username or password!");
-      }
+      setTimeout(() => {
+        msg.remove();
+        window.location.href = "login.html";
+      }, 2000);
     }
   </script>
 </body>
