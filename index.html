@@ -270,6 +270,17 @@ footer {
     pointer-events: none;
     border-radius: 8px;
 }
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #00ffff22;
+}
+.cart-controls button {
+    margin-left: 5px;
+}
 </style>
 </head>
 <body>
@@ -283,14 +294,15 @@ footer {
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="#home" data-bs-toggle="collapse" data-bs-target="#navbarNav">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#products" data-bs-toggle="collapse" data-bs-target="#navbarNav">Featured</a></li>
-                <li class="nav-item"><a class="nav-link" href="#product" data-bs-toggle="collapse" data-bs-target="#navbarNav">Products</a></li>
-                <li class="nav-item"><a class="nav-link" href="#why" data-bs-toggle="collapse" data-bs-target="#navbarNav">Why Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="#about" data-bs-toggle="collapse" data-bs-target="#navbarNav">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#testimonials" data-bs-toggle="collapse" data-bs-target="#navbarNav">Testimonials</a></li>
-                <li class="nav-item"><a class="nav-link" href="files/signup.html" data-bs-toggle="collapse" data-bs-target="#navbarNav">Sign in</a></li>
-                <li class="nav-item"><a class="nav-link" href="files/login.html" data-bs-toggle="collapse" data-bs-target="#navbarNav">Log in</a></li>
+                <li class="nav-item"><a class="nav-link internal-link" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link internal-link" href="#products">Featured</a></li>
+                <li class="nav-item"><a class="nav-link internal-link" href="#product">Products</a></li>
+                <li class="nav-item"><a class="nav-link internal-link" href="#why">Why Us</a></li>
+                <li class="nav-item"><a class="nav-link internal-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link internal-link" href="#testimonials">Testimonials</a></li>
+                
+                <li class="nav-item"><a class="nav-link" href="files/signup.html">Sign in</a></li>
+                <li class="nav-item"><a class="nav-link" href="files/login.html">Log in</a></li>
             </ul>
         </div>
     </div>
@@ -310,7 +322,8 @@ footer {
     <p>DarkZone Store is your ultimate destination for premium gadgets, cutting-edge tech, and a next-level shopping experience built for Pakistan.</p>
 </section>
 
-<section class="featured">
+<section id="products" class="featured"> 
+    <h2>Featured Products</h2>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -326,7 +339,6 @@ footer {
             </div>
         </div>
     </div>
-    
 </section>
 
 <section id="why" class="why">
@@ -338,7 +350,7 @@ footer {
     <h2>All Products</h2>
     <input type="text" id="search-bar" class="form-control" placeholder="Search products...">
     <div class="products" id="all-products">
-<!-- products 1-20 -->
+
         <div class="product"><img src="imgs/gaming headset.PNG" alt="Gaming Headset"><h3>Gaming Headset</h3><p>PKR 7,499</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/rgb keyboard.PNG" alt="RGB Keyboard"><h3>RGB Keyboard</h3><p>PKR 4,999</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/wireless mouse.PNG" alt="Wireless Mouse"><h3>Wireless Mouse</h3><p>PKR 2,199</p><button class="btn">Add to Cart</button></div>
@@ -359,7 +371,7 @@ footer {
         <div class="product"><img src="imgs/portable chaarger.PNG" alt="Portable Charger"><h3>Portable Charger 10000mAh</h3><p>PKR 1,799</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/led lamp.PNG" alt="Smart LED Lamp"><h3>Smart LED Lamp</h3><p>PKR 2,599</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/headphone stand.PNG" alt="Headphone Stand"><h3>Headphone Stand</h3><p>PKR 999</p><button class="btn">Add to Cart</button></div>
-<!-- products 21-40 -->
+
         <div class="product"><img src="imgs/noise canceelinh earphones.PNG" alt="Noise Cancelling Earphones"><h3>Noise Cancelling Earphones</h3><p>PKR 3,999</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/samrt thermostaat.PNG" alt="Smart Thermostat"><h3>Smart Thermostat</h3><p>PKR 12,499</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/acecopter.PNG" alt="Drone Quadcopter"><h3>Drone Quadcopter</h3><p>PKR 29,999</p><button class="btn">Add to Cart</button></div>
@@ -374,13 +386,13 @@ footer {
         <div class="product"><img src="imgs/laptop cooling pad.PNG" alt="Laptop Cooling Pad"><h3>Laptop Cooling Pad</h3><p>PKR 1,899</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/smart body scale.PNG" alt="Smart Scale"><h3>Smart Body Scale</h3><p>PKR 2,499</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/fitness tracker.PNG" alt="Fitness Tracker"><h3>Fitness Tracker</h3><p>PKR 5,499</p><button class="btn">Add to Cart</button></div>
-        <div class="product"><img src="imgs/led desk lamp.PNG" alt="LED Desk Lamp"><h3>LED Desk Lamp</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/led desk lamp.PNG" alt="LED Desk Lamp"><h3>LED Desk Lamp </h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/mini projector.PNG" alt="Mini Projector"><h3>Mini Projector</h3><p>PKR 13,499</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/gaming pad.PNG" alt="Gaming Mat"><h3>Gaming Mat</h3><p>PKR 1,499</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/smart bulb.PNG" alt="Smart Light Bulb"><h3>Smart Light Bulb</h3><p>PKR 799</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/stylish.PNG" alt="Mechanical Pencil"><h3>Stylish Mechanical Pencil</h3><p>PKR 199</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/hdmi.PNG" alt="HDMI Cable"><h3>HDMI Cable 2m</h3><p>PKR 499</p><button class="btn">Add to Cart</button></div>
-<!-- products 41 60 -->
+
         <div class="product"><img src="imgs/Smartphone Stand.PNG" alt="Smartphone Stand"><h3>Smartphone Stand</h3><p>PKR 699</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/vr flove.PNG" alt="VR Gloves"><h3>VR Gloves</h3><p>PKR 6,999</p><button class="btn">Add to Cart</button></div>
         <div class="product"><img src="imgs/usb microhone.PNG" alt="Microphone"><h3>USB Microphone</h3><p>PKR 4,199</p><button class="btn">Add to Cart</button></div>
@@ -610,7 +622,7 @@ if (searchInput) {
     });
 }
 
-// Event listeners
+// Event listeners for Add to Cart
 document.querySelectorAll(".product .btn").forEach(button => {
     button.addEventListener("click", (e) => {
         const product = button.closest(".product");
@@ -619,6 +631,21 @@ document.querySelectorAll(".product .btn").forEach(button => {
         addToCart(name, price);
     });
 });
+
+// FIX: New listener to close the navbar when an internal anchor link is clicked
+document.querySelectorAll('.internal-link').forEach(link => {
+    link.addEventListener('click', () => {
+        // Find the navbar collapse element
+        const navbarCollapse = document.getElementById('navbarNav');
+        // Check if the navbar is currently visible (open)
+        if (navbarCollapse.classList.contains('show')) {
+            // Manually trigger Bootstrap's collapse method to close it
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
+            bsCollapse.hide();
+        }
+    });
+});
+
 document.getElementById("cart").addEventListener("click", openCart);
 
 updateCartDisplay();
