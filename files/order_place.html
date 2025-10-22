@@ -1,107 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DarkZone Store - Order Page</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<style>
-body { font-family:"Poppins", sans-serif; background:#0a0a0f; color:#e0f7fa; margin:0; padding:0; }
-.navbar { background: rgba(0,10,20,0.8); backdrop-filter: blur(10px); border-bottom:1px solid #00ffff33; }
-.navbar .navbar-brand { color:#00e5ff; font-weight:600; letter-spacing:1px; font-size:1.8em; }
-.navbar .navbar-nav .nav-link { color:#e0f7fa; font-weight:500; transition:0.3s; }
-.navbar .navbar-nav .nav-link:hover { color:#00e5ff; }
-.container { padding:150px 10px 50px 10px; max-width: 900px; }
-h2 { color:#00e5ff; margin-bottom:30px; text-align:center; }
-input, textarea { background:#12121a; color:#e0f7fa; border:1px solid #00ffff33; border-radius:5px; padding:8px; width:100%; margin-bottom:15px; }
-.btn { background:#00e5ff; color:#000; font-weight:bold; border:none; border-radius:20px; transition:0.3s; }
-.btn:hover { background:#00bcd4; }
-.cart-item { display:flex; justify-content:space-between; margin-bottom:10px; padding:8px; border-bottom:1px solid #00ffff22; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - DarkZone Store</title>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #0a0a0f;
+            color: #e0f7fa;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            animation: fadeIn 1s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        h1 {
+            color: #00f5ff;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #00f5ff;
+        }
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        .card {
+            background: #12121a;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+        }
+        /* Cart Summary */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #00ffff22;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .total-box {
+            text-align: right;
+            padding-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #00f5ff;
+        }
+        /* Form Styles */
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #00f5ff44;
+            border-radius: 5px;
+            background: #1a1a24;
+            color: #fff;
+            outline: none;
+            transition: 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: #00f5ff;
+            box-shadow: 0 0 5px #00f5ff;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ccc;
+        }
+
+        /* Order Button */
+        #placeOrderBtn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background: #00f5ff;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: 0.3s;
+        }
+        #placeOrderBtn:hover {
+            box-shadow: 0 0 20px #00f5ff;
+            transform: scale(1.02);
+        }
+        
+        /* Navbar */
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(15, 12, 41, 0.9); padding: 15px 30px;
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 999;
+            backdrop-filter: blur(5px);
+        }
+        .navbar .logo { font-size: 1.5em; font-weight: bold; color: #00f5ff; }
+        .navbar ul { display: flex; gap: 20px; list-style: none; transition: 0.3s ease; margin: 0; padding: 0; }
+        .navbar a { color: white; text-decoration: none; transition: 0.3s; }
+        .navbar a:hover { color: #00f5ff; text-shadow: 0 0 5px #00f5ff; }
+        .menu-toggle { display: none; font-size: 1.8em; color: #00f5ff; background: none; border: none; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+            .navbar ul {
+                position: absolute; top: 65px; left: 0; width: 100%; background: #0a0a0f; 
+                flex-direction: column; align-items: center; gap: 15px; padding: 20px 0;
+                max-height: 0; overflow: hidden; opacity: 0;
+                transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            }
+            .navbar ul.active { max-height: 300px; opacity: 1; }
+            .menu-toggle { display: block; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 10px; }
+        }
+    </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="logo">DarkZone Store</div>
+        <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+        <ul id="menuList">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+            <li><a href="login.html">Log in</a></li>
+        </ul>
+    </nav>
 
-<!-- Responsive Navbar -->
-<nav class="navbar navbar-expand-lg fixed-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">DarkZone Store</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon" style="color:#00e5ff; font-size:1.5em;">&#9776;</span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.html#products">Featured</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.html#product">Products</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.html#why">Why Us</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.html#testimonials">Testimonials</a></li>
-      </ul>
+    <div class="container">
+        <h1>Secure Checkout</h1>
+        
+        <div class="checkout-grid">
+            <div class="card">
+                <h2>Shipping Information</h2>
+                <form id="checkoutForm">
+                    <div class="form-group">
+                        <label for="name">Full Name (Auto-filled from session)</label>
+                        <input type="text" id="name" required placeholder="Ahsan Ali">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Shipping Address</label>
+                        <input type="text" id="address" required placeholder="House 123, Street 4, City">
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" required placeholder="Karachi">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required placeholder="03XXXXXXXXX">
+                    </div>
+
+                    <h2 style="margin-top: 30px;">Payment</h2>
+                    <div class="form-group">
+                        <label for="payment">Payment Method</label>
+                        <select id="payment" required>
+                            <option value="">-- Select Payment --</option>
+                            <option value="COD">Cash on Delivery (COD)</option>
+                            <option value="card">Credit/Debit Card (Simulated)</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" id="placeOrderBtn">Place Order</button>
+                </form>
+            </div>
+            
+            <div class="card">
+                <h2>Order Summary</h2>
+                <div id="order-items">
+                    <p style="text-align: center; color: #aaa;">Your cart is empty.</p>
+                </div>
+                
+                <div class="total-box">
+                    Subtotal: PKR <span id="subtotal">0</span><br>
+                    Shipping: PKR <span id="shipping">300</span><br>
+                    Total: PKR <span id="final-total">0</span>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</nav>
 
-<div class="container">
-  <h2>Checkout / Order Page</h2>
+    <script>
+        // Navbar toggle
+        function toggleMenu() {
+            document.getElementById("menuList").classList.toggle("active");
+        }
 
-  <h4>Cart Summary</h4>
-  <div id="cart-items"></div>
-  <h5>Total: PKR <span id="cart-total">0</span></h5>
+        // AUTHENTICATION FUNCTION: Checks for an active session.
+        function checkAuthentication() {
+            const session = sessionStorage.getItem("currentSession");
+            const localUser = localStorage.getItem("techmartUser");
 
-  <h4>Your Details</h4>
-  <form id="order-form">
-    <input type="text" id="name" placeholder="Full Name" required>
-    <input type="email" id="email" placeholder="Email" required>
-    <input type="tel" id="phone" placeholder="Phone Number" required>
-    <textarea id="address" placeholder="Address" rows="3" required></textarea>
-    <button type="submit" class="btn">Place Order</button>
-  </form>
+            // Rule 1: If session is empty, redirect to login
+            if (!session) {
+                alert("🔒 You must be logged in to complete your order. Redirecting to login page.");
+                window.location.href = "login.html";
+                return false;
+            }
 
-  <button onclick="goBack()" class="btn mt-3">Back to Store</button>
-</div>
+            // Rule 2: Validate session data against local storage
+            const currentSession = JSON.parse(session);
+            const storedUser = JSON.parse(localUser);
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-// Demo cart data (replace with localStorage in real project)
-let cart = [
-  { name: "Gaming Headset", price: 7499, quantity: 1 },
-  { name: "RGB Keyboard", price: 4999, quantity: 2 }
-];
+            if (!storedUser || currentSession.username !== storedUser.username) {
+                 alert("⚠️ Session mismatch. Please log in again.");
+                 sessionStorage.removeItem("currentSession");
+                 window.location.href = "login.html";
+                 return false;
+            }
+            
+            // Populate the name field with the username if authenticated
+            document.getElementById("name").value = currentSession.username;
+            return true;
+        }
 
-function updateCartDisplay() {
-  const cartItemsDiv = document.getElementById("cart-items");
-  const cartTotalSpan = document.getElementById("cart-total");
-  cartItemsDiv.innerHTML = "";
-  let total = 0;
-  cart.forEach(item => {
-    total += item.price * item.quantity;
-    const div = document.createElement("div");
-    div.className = "cart-item";
-    div.innerHTML = `<span>${item.name} x ${item.quantity}</span><span>PKR ${item.price*item.quantity}</span>`;
-    cartItemsDiv.appendChild(div);
-  });
-  cartTotalSpan.textContent = total;
-}
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const shippingCost = 300; 
 
-updateCartDisplay();
+        function displayOrderSummary() {
+            const orderItemsDiv = document.getElementById("order-items");
+            const subtotalSpan = document.getElementById("subtotal");
+            const finalTotalSpan = document.getElementById("final-total");
+            
+            orderItemsDiv.innerHTML = "";
+            let subtotal = 0;
 
-document.getElementById("order-form").addEventListener("submit", function(e){
-  e.preventDefault();
-  if(cart.length === 0){
-    alert("Your cart is empty!");
-    return;
-  }
-  const name = document.getElementById("name").value;
-  const total = cart.reduce((sum,i)=>sum+i.price*i.quantity,0);
-  alert(`Thank you ${name}! Your order has been placed.\nTotal: PKR ${total}`);
-  cart = [];
-  updateCartDisplay();
-  document.getElementById("order-form").reset();
-});
+            if (cart.length === 0) {
+                orderItemsDiv.innerHTML = '<p style="text-align: center; color: #f00; font-weight: bold;">Your cart is empty. Please add items before checking out.</p>';
+                document.getElementById("placeOrderBtn").disabled = true;
+                return;
+            }
 
-function goBack(){ window.history.back(); }
-</script>
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                const div = document.createElement("div");
+                div.classList.add("cart-item");
+                div.innerHTML = `
+                    <span>${item.name} (${item.quantity}x)</span>
+                    <span>PKR ${itemTotal.toLocaleString()}</span>
+                `;
+                orderItemsDiv.appendChild(div);
+            });
 
+            const finalTotal = subtotal + shippingCost;
+            
+            subtotalSpan.textContent = subtotal.toLocaleString();
+            document.getElementById("shipping").textContent = shippingCost.toLocaleString();
+            finalTotalSpan.textContent = finalTotal.toLocaleString();
+            document.getElementById("placeOrderBtn").disabled = false;
+        }
+
+        // Handle order submission
+        document.getElementById("checkoutForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            
+            if (!checkAuthentication()) { // Re-check authentication on submission
+                return;
+            }
+            
+            if (cart.length === 0) {
+                alert("Your cart is empty. Please add items to place an order.");
+                return;
+            }
+
+            const orderDetails = {
+                customer: document.getElementById("name").value,
+                address: document.getElementById("address").value + ', ' + document.getElementById("city").value,
+                phone: document.getElementById("phone").value,
+                payment: document.getElementById("payment").value,
+                items: cart,
+                total: document.getElementById("final-total").textContent,
+                time: new Date().toLocaleString()
+            };
+
+            // Clear cart after successful order
+            localStorage.removeItem("cart");
+            cart = []; 
+            
+            // Show success message and redirect
+            const msg = document.createElement("div");
+            msg.textContent = "🚀 Order Placed Successfully! Total: PKR " + orderDetails.total;
+            
+            msg.style.cssText = `
+                position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+                background: #00f5ff; color: #000; padding: 15px 30px; 
+                border-radius: 10px; font-weight: bold; box-shadow: 0 0 20px #00f5ff;
+                transition: opacity 0.5s ease; z-index: 9999; font-size: 1.2em;
+            `;
+            document.body.appendChild(msg);
+
+            setTimeout(() => {
+                msg.style.opacity = "0";
+            }, 3000);
+
+            setTimeout(() => {
+                msg.remove();
+                // Redirect back to the home page
+                window.location.href = "../index.html"; 
+            }, 3500);
+        });
+
+        // Run on page load: AUTHENTICATE FIRST
+        if (checkAuthentication()) {
+            displayOrderSummary();
+        }
+    </script>
 </body>
 </html>
