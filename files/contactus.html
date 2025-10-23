@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Feedback - DarkZone Store</title>
+    <style>
+        /* Base styles matching your DarkZone theme */
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #0a0a0f;
+            color: #e0f7fa;
+            min-height: 100vh;
+            padding-top: 80px;
+            margin: 0;
+        }
+        .container { 
+            max-width: 700px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            animation: fadeIn 1s ease; 
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        h1 { 
+            color: #00f5ff; 
+            text-align: center; 
+            margin-bottom: 30px; 
+            text-shadow: 0 0 10px #00f5ff; 
+        }
+
+        /* Form Card Styling */
+        .form-card {
+            background: #12121a; 
+            padding: 35px; 
+            border-radius: 10px; 
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2); 
+        }
+
+        .form-group { 
+            margin-bottom: 25px; 
+        }
+
+        label { 
+            display: block; 
+            margin-bottom: 8px; 
+            color: #ccc; 
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        input[type="text"], 
+        input[type="email"], 
+        select, 
+        textarea { 
+            width: 100%; 
+            padding: 12px;
+            border: 1px solid #00f5ff44;
+            border-radius: 5px;
+            background: #1a1a24;
+            color: #fff;
+            outline: none;
+            transition: 0.3s;
+            box-sizing: border-box;
+            resize: vertical; 
+            min-height: 45px; 
+        }
+        
+        input:focus, select:focus, textarea:focus { 
+            border-color: #00f5ff; 
+            box-shadow: 0 0 5px #00f5ff; 
+        }
+
+        textarea {
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #00f5ff;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        /* Message Display */
+        .message-success {
+            display: none;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #16BF78;
+            color: #0a0a0f;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+
+        /* ===== NAVBAR (for completeness) ===== */
+        .navbar { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: rgba(15, 12, 41, 0.9); 
+            padding: 15px 30px; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            z-index: 999; 
+            backdrop-filter: blur(5px); 
+        }
+        .navbar .logo { 
+            font-size: 1.5em; 
+            font-weight: bold; 
+            color: #00f5ff; 
+        }
+        .navbar ul { 
+            display: flex; 
+            gap: 20px; 
+            list-style: none; 
+            margin: 0; 
+            padding: 0; 
+        }
+        .navbar a { 
+            color: white; 
+            text-decoration: none; 
+            transition: 0.3s; 
+        }
+        
+        /* Mobile menu toggle (if needed) */
+        .menu-toggle { display: none; } 
+        @media (max-width: 768px) {
+            .navbar ul { /* Hide menu list on small screens */ }
+            .menu-toggle { /* Display menu toggle button */ }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">DarkZone Store</div>
+        <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+        <ul id="menuList">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+            <li><a href="login.html">Log in</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Contact Us & Leave Feedback</h1>
+        
+        <div class="form-card">
+            <form id="contactForm" action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST">
+                
+                <div class="form-group">
+                    <label for="form-type">Reason for Contact</label>
+                    <select id="form-type" name="Reason_for_Contact" required>
+                        <option value="General">General Inquiry</option>
+                        <option value="Feedback" selected>Product/Service Feedback</option>
+                        <option value="Support">Technical Support Request</option>
+                        <option value="Order">Question about an Existing Order</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="Name" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your Email Address</label>
+                    <input type="email" id="email" name="_replyto" required placeholder="example@darkzone.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="_subject" required placeholder="e.g., Feedback on the Neon Mousepad">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Your Message / Feedback</label>
+                    <textarea id="message" name="Message" required placeholder="Type your detailed feedback, suggestion, or query here."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+            
+            <div id="successMessage" class="message-success">
+                ✅ Thank you! Your message has been sent successfully.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Form Submission Handler for Formspree using modern fetch API
+        document.getElementById('contactForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const form = event.target;
+            const statusDisplay = document.getElementById('successMessage');
+            const button = form.querySelector('.submit-btn');
+
+            // Temporarily disable button and change text
+            button.disabled = true;
+            button.textContent = "Sending...";
+            statusDisplay.style.display = 'none'; // Hide previous message
+
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Success
+                    statusDisplay.style.display = 'block';
+                    form.reset(); // Clear form on success
+                } else {
+                    // Failure (e.g., bad Formspree endpoint or not activated)
+                    alert("❌ Submission failed. Please try again or ensure your Formspree endpoint is correct and activated.");
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert("❌ An error occurred while submitting the form. Check console for details.");
+            } finally {
+                // Reset button text and re-enable it
+                button.disabled = false;
+                button.textContent = "Send Message";
+            }
+        });
+
+        // Navbar toggle
+        function toggleMenu() {
+            const menuList = document.getElementById("menuList");
+            if (menuList) {
+                menuList.classList.toggle("active");
+            }
+        }
+    </script>
+</body>
+</html>
