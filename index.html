@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DarkZone Store</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>DarkZone Store | Premium Cyberpunk Tech & Gadgets in PKR</title>
+<meta name="description" content="Welcome to DarkZone Store, your ultimate destination for cutting-edge tech, gaming gear, and cyberpunk gadgets available in Pakistan (PKR).">
+<meta name="keywords" content="DarkZone, tech, gadgets, electronics, gaming, cyberpunk, Pakistan, online store, PKR"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
 <link rel="shortcut icon" href="imgs/favicon.PNG" type="image/x-icon">
@@ -241,6 +242,61 @@ h2 {
     background: #1a1a24;
 }
 
+/* NEW: Personalized Testimonial Style */
+#personalized-testimonial-section {
+    margin: 50px auto;
+    padding: 25px;
+    max-width: 700px;
+    background: rgba(0, 245, 255, 0.1);
+    border-radius: 10px;
+    border: 2px solid #00f5ff;
+    color: #e0f7fa;
+    animation: pulse 1.5s infinite alternate;
+}
+#personalized-testimonial-section h2 {
+    text-shadow: none;
+    animation: none;
+    margin-bottom: 15px;
+}
+#personalized-testimonial-section blockquote {
+    font-style: italic;
+    font-size: 1.1em;
+    padding: 0;
+    margin: 0;
+    border-left: 3px solid #00f5ff;
+    padding-left: 15px;
+    text-align: left;
+}
+#personalized-testimonial-section p.author {
+    text-align: right;
+    color: #ccc;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+/* END NEW */
+
+/* Styling for testimonial images */
+.testimonial .testimonial-author-img {
+    width: 60px; /* Size of the image */
+    height: 60px;
+    border-radius: 50%; /* Makes it a circle */
+    object-fit: cover;
+    margin-right: 15px;
+    border: 2px solid #00e5ff; /* Neon border */
+    box-shadow: 0 0 8px #00e5ff80;
+    vertical-align: middle;
+}
+.testimonial strong {
+    display: inline-block;
+    vertical-align: middle;
+    color: #00e5ff;
+}
+.testimonial p {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: #e0f7fa;
+}
+
 footer {
     background: #05050a;
     padding: 30px;
@@ -338,7 +394,7 @@ footer {
 }
 </style>
 </head>
-<body>
+<body onload="loadUserFeedbackForIndex()">
 
 <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
@@ -399,78 +455,74 @@ footer {
 </section>
 
 <section id="product">
-  <h2>All Products</h2>
-  <input type="text" id="search-bar" class="form-control" placeholder="Search products...">
-  <div class="products" id="all-products">
+    <h2>All Products</h2>
+    <input type="text" id="search-bar" class="form-control" placeholder="Search products...">
+    <div class="products" id="all-products">
 
-    <!-- 1-20 -->
-    <div class="product"><img src="imgs/gaming headset.PNG" alt="Gaming Headset"><h3>Gaming Headset</h3><p>PKR 7,499</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/rgb keyboard.PNG" alt="RGB Keyboard"><h3>RGB Keyboard</h3><p>PKR 4,999</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/wireless mouse.PNG" alt="Wireless Mouse"><h3>Wireless Mouse</h3><p>PKR 2,199</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/mechanical keyboad.PNG" alt="Mechanical Keyboard"><h3>Mechanical Keyboard</h3><p>PKR 6,499</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/gaming chair.PNG" alt="Gaming Chair"><h3>Gaming Chair</h3><p>PKR 14,999</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/hd webcam.PNG" alt="HD Webcam"><h3>HD Webcam</h3><p>PKR 3,299</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/led monitorr.PNG" alt="LED Monitor"><h3>LED Monitor 24"</h3><p>PKR 12,499</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/External HDD 1TB.PNG" alt="External HDD"><h3>External HDD 1TB</h3><p>PKR 5,799</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/bagpack.PNG" alt="Laptop Backpack"><h3>Laptop Backpack</h3><p>PKR 2,499</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/phantom smartwatch.PNG" alt="Smartwatch"><h3>Phantom Smartwatch</h3><p>PKR 8,999</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/blutooth speaker.PNG" alt="Bluetooth Speaker"><h3>Bluetooth Speaker</h3><p>PKR 4,299</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/vr headst.PNG" alt="VR Headset"><h3>VR Headset</h3><p>PKR 19,499</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/console game box.PNG" alt="Gaming Console"><h3>GameBox Console</h3><p>PKR 35,999</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/graphics tablet.PNG" alt="Graphics Tablet"><h3>Graphics Tablet</h3><p>PKR 9,799</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/rgb mose pad.PNG" alt="RGB Mousepad"><h3>RGB Mousepad</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/adjstable laptop stand.PNG" alt="Laptop Stand"><h3>Adjustable Laptop Stand</h3><p>PKR 2,199</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/usb hub 4 ports.PNG" alt="USB Hub"><h3>USB Hub 4 Ports</h3><p>PKR 899</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/portable chaarger.PNG" alt="Portable Charger"><h3>Portable Charger 10000mAh</h3><p>PKR 1,799</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/led lamp.PNG" alt="Smart LED Lamp"><h3>Smart LED Lamp</h3><p>PKR 2,599</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/headphone stand.PNG" alt="Headphone Stand"><h3>Headphone Stand</h3><p>PKR 999</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/gaming headset.PNG" alt="Gaming Headset"><h3>Gaming Headset</h3><p>PKR 7,499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/rgb keyboard.PNG" alt="RGB Keyboard"><h3>RGB Keyboard</h3><p>PKR 4,999</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/wireless mouse.PNG" alt="Wireless Mouse"><h3>Wireless Mouse</h3><p>PKR 2,199</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/mechanical keyboad.PNG" alt="Mechanical Keyboard"><h3>Mechanical Keyboard</h3><p>PKR 6,499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/gaming chair.PNG" alt="Gaming Chair"><h3>Gaming Chair</h3><p>PKR 14,999</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/hd webcam.PNG" alt="HD Webcam"><h3>HD Webcam</h3><p>PKR 3,299</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/led monitorr.PNG" alt="LED Monitor"><h3>LED Monitor 24"</h3><p>PKR 12,499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/External HDD 1TB.PNG" alt="External HDD"><h3>External HDD 1TB</h3><p>PKR 5,799</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/bagpack.PNG" alt="Laptop Backpack"><h3>Laptop Backpack</h3><p>PKR 2,499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/phantom smartwatch.PNG" alt="Smartwatch"><h3>Phantom Smartwatch</h3><p>PKR 8,999</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/blutooth speaker.PNG" alt="Bluetooth Speaker"><h3>Bluetooth Speaker</h3><p>PKR 4,299</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/vr headst.PNG" alt="VR Headset"><h3>VR Headset</h3><p>PKR 19,499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/console game box.PNG" alt="Gaming Console"><h3>GameBox Console</h3><p>PKR 35,999</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/graphics tablet.PNG" alt="Graphics Tablet"><h3>Graphics Tablet</h3><p>PKR 9,799</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/rgb mose pad.PNG" alt="RGB Mousepad"><h3>RGB Mousepad</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/adjstable laptop stand.PNG" alt="Laptop Stand"><h3>Adjustable Laptop Stand</h3><p>PKR 2,199</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/usb hub 4 ports.PNG" alt="USB Hub"><h3>USB Hub 4 Ports</h3><p>PKR 899</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/portable chaarger.PNG" alt="Portable Charger"><h3>Portable Charger 10000mAh</h3><p>PKR 1,799</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/led lamp.PNG" alt="Smart LED Lamp"><h3>Smart LED Lamp</h3><p>PKR 2,599</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/headphone stand.PNG" alt="Headphone Stand"><h3>Headphone Stand</h3><p>PKR 999</p><button class="btn">Add to Cart</button></div>
 
-    <!-- 21-40 -->
-    <div class="product"><img src="imgs/noise canceelinh earphones.PNG" alt="Noise Cancelling Earphones"><h3>Noise Cancelling Earphones</h3><p>PKR 3,999</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/samrt thermostaat.PNG" alt="Smart Thermostat"><h3>Smart Thermostat</h3><p>PKR 12,499</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/acecopter.PNG" alt="Drone Quadcopter"><h3>Drone Quadcopter</h3><p>PKR 29,999</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/action movies.PNG" alt="Action Camera"><h3>Action Camera</h3><p>PKR 15,499</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/smart glasses.PNG" alt="Smart Glasses"><h3>Smart Glasses</h3><p>PKR 9,999</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/wifi ext.PNG" alt="WiFi Extender"><h3>WiFi Extender</h3><p>PKR 2,799</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/LED Strip Light.PNG" alt="LED Strip Light"><h3>LED Strip Light</h3><p>PKR 1,599</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/Portable SSD 512GB.PNG" alt="Portable SSD"><h3>Portable SSD 512GB</h3><p>PKR 8,499</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/smart.PNG" alt="Smart Door Lock"><h3>Smart Door Lock</h3><p>PKR 19,999</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/wireless charger.PNG" alt="Wireless Charger"><h3>Wireless Charger</h3><p>PKR 1,999</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/Bluetooth Earbuds.PNG" alt="Bluetooth Earbuds"><h3>Bluetooth Earbuds</h3><p>PKR 3,299</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/laptop cooling pad.PNG" alt="Laptop Cooling Pad"><h3>Laptop Cooling Pad</h3><p>PKR 1,899</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/smart body scale.PNG" alt="Smart Scale"><h3>Smart Body Scale</h3><p>PKR 2,499</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/fitness tracker.PNG" alt="Fitness Tracker"><h3>Fitness Tracker</h3><p>PKR 5,499</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/led desk lamp.PNG" alt="LED Desk Lamp"><h3>LED Desk Lamp</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/mini projector.PNG" alt="Mini Projector"><h3>Mini Projector</h3><p>PKR 13,499</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/gaming pad.PNG" alt="Gaming Mat"><h3>Gaming Mat</h3><p>PKR 1,499</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/smart bulb.PNG" alt="Smart Light Bulb"><h3>Smart Light Bulb</h3><p>PKR 799</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/stylish.PNG" alt="Mechanic
-      l Pencil"><h3>Stylish Mechanical Pencil</h3><p>PKR 199</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/hdmi.PNG" alt="HDMI Cable"><h3>HDMI Cable 2m</h3><p>PKR 499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/noise canceelinh earphones.PNG" alt="Noise Cancelling Earphones"><h3>Noise Cancelling Earphones</h3><p>PKR 3,999</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/samrt thermostaat.PNG" alt="Smart Thermostat"><h3>Smart Thermostat</h3><p>PKR 12,499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/acecopter.PNG" alt="Drone Quadcopter"><h3>Drone Quadcopter</h3><p>PKR 29,999</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/action movies.PNG" alt="Action Camera"><h3>Action Camera</h3><p>PKR 15,499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/smart glasses.PNG" alt="Smart Glasses"><h3>Smart Glasses</h3><p>PKR 9,999</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/wifi ext.PNG" alt="WiFi Extender"><h3>WiFi Extender</h3><p>PKR 2,799</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/LED Strip Light.PNG" alt="LED Strip Light"><h3>LED Strip Light</h3><p>PKR 1,599</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/Portable SSD 512GB.PNG" alt="Portable SSD"><h3>Portable SSD 512GB</h3><p>PKR 8,499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/smart.PNG" alt="Smart Door Lock"><h3>Smart Door Lock</h3><p>PKR 19,999</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/wireless charger.PNG" alt="Wireless Charger"><h3>Wireless Charger</h3><p>PKR 1,999</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/Bluetooth Earbuds.PNG" alt="Bluetooth Earbuds"><h3>Bluetooth Earbuds</h3><p>PKR 3,299</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/laptop cooling pad.PNG" alt="Laptop Cooling Pad"><h3>Laptop Cooling Pad</h3><p>PKR 1,899</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/smart body scale.PNG" alt="Smart Scale"><h3>Smart Body Scale</h3><p>PKR 2,499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/fitness tracker.PNG" alt="Fitness Tracker"><h3>Fitness Tracker</h3><p>PKR 5,499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/led desk lamp.PNG" alt="LED Desk Lamp"><h3>LED Desk Lamp</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/mini projector.PNG" alt="Mini Projector"><h3>Mini Projector</h3><p>PKR 13,499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/gaming pad.PNG" alt="Gaming Mat"><h3>Gaming Mat</h3><p>PKR 1,499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/smart bulb.PNG" alt="Smart Light Bulb"><h3>Smart Light Bulb</h3><p>PKR 799</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/stylish.PNG" alt="Mechanicl Pencil"><h3>Stylish Mechanical Pencil</h3><p>PKR 199</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/hdmi.PNG" alt="HDMI Cable"><h3>HDMI Cable 2m</h3><p>PKR 499</p><button class="btn">Add to Cart</button></div>
 
-    <!-- 41-60 -->
-    <div class="product"><img src="imgs/Smartphone Stand.PNG" alt="Smartphone Stand"><h3>Smartphone Stand</h3><p>PKR 699</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/vr flove.PNG" alt="VR Gloves"><h3>VR Gloves</h3><p>PKR 6,999</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/usb microhone.PNG" alt="Microphone"><h3>USB Microphone</h3><p>PKR 4,199</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/smart plug.PNG" alt="Smart Plug"><h3>Smart Plug</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/table.PNG" alt="Gaming Desk"><h3>Gaming Desk</h3><p>PKR 16,499</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/laptop bag.PNG" alt="Laptop Bag"><h3>Laptop Bag</h3><p>PKR 2,199</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/tripod.PNG" alt="Camera Tripod"><h3>Camera Tripod</h3><p>PKR 1,899</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/thermometer.PNG" alt="Smart Thermometer"><h3>Smart Thermometer</h3><p>PKR 1,499</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/controller.PNG" alt="Gaming Controller"><h3>Gaming Controller</h3><p>PKR 3,999</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/desk organizer.PNG" alt="Desk Organizer"><h3>Desk Organizer</h3><p>PKR 899</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/samrt ring.PNG" alt="Smart Ring"><h3>Smart Ring</h3><p>PKR 4,499</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/adapte.PNG" alt="Wireless Adapter"><h3>Wireless Adapter</h3><p>PKR 699</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/headphone snois.PNG" alt="Noise Cancelling Headphones"><h3>Noise Cancelling Headphones</h3><p>PKR 12,499</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/cameraaa.PNG" alt="Smart Camera"><h3>Smart Security Camera</h3><p>PKR 5,999</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/trackerr.PNG" alt="Bluetooth Tracker"><h3>Bluetooth Tracker</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/usb fan.PNG" alt="Portable Fan"><h3>Portable USB Fan</h3><p>PKR 799</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/desk lamp.PNG" alt="Desk Lamp"><h3>Desk Lamp with USB</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/water.PNG" alt="Smart Water Bottle"><h3>Smart Water Bottle</h3><p>PKR 1,899</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/sleeve.PNG" alt="Laptop Sleeve"><h3>Laptop Sleeve 15</h3><p>PKR 1,199</p><button class="btn">Add to Cart</button></div>
-    <div class="product"><img src="imgs/stripe.PNG" alt="Power Strip"><h3>Smart Power Strip</h3><p>PKR 1,499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/Smartphone Stand.PNG" alt="Smartphone Stand"><h3>Smartphone Stand</h3><p>PKR 699</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/vr flove.PNG" alt="VR Gloves"><h3>VR Gloves</h3><p>PKR 6,999</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/usb microhone.PNG" alt="Microphone"><h3>USB Microphone</h3><p>PKR 4,199</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/smart plug.PNG" alt="Smart Plug"><h3>Smart Plug</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/table.PNG" alt="Gaming Desk"><h3>Gaming Desk</h3><p>PKR 16,499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/laptop bag.PNG" alt="Laptop Bag"><h3>Laptop Bag</h3><p>PKR 2,199</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/tripod.PNG" alt="Camera Tripod"><h3>Camera Tripod</h3><p>PKR 1,899</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/thermometer.PNG" alt="Smart Thermometer"><h3>Smart Thermometer</h3><p>PKR 1,499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/controller.PNG" alt="Gaming Controller"><h3>Gaming Controller</h3><p>PKR 3,999</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/desk organizer.PNG" alt="Desk Organizer"><h3>Desk Organizer</h3><p>PKR 899</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/samrt ring.PNG" alt="Smart Ring"><h3>Smart Ring</h3><p>PKR 4,499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/adapte.PNG" alt="Wireless Adapter"><h3>Wireless Adapter</h3><p>PKR 699</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/headphone snois.PNG" alt="Noise Cancelling Headphones"><h3>Noise Cancelling Headphones</h3><p>PKR 12,499</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/cameraaa.PNG" alt="Smart Camera"><h3>Smart Security Camera</h3><p>PKR 5,999</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/trackerr.PNG" alt="Bluetooth Tracker"><h3>Bluetooth Tracker</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/usb fan.PNG" alt="Portable Fan"><h3>Portable USB Fan</h3><p>PKR 799</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/desk lamp.PNG" alt="Desk Lamp"><h3>Desk Lamp with USB</h3><p>PKR 1,299</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/water.PNG" alt="Smart Water Bottle"><h3>Smart Water Bottle</h3><p>PKR 1,899</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/sleeve.PNG" alt="Laptop Sleeve"><h3>Laptop Sleeve 15</h3><p>PKR 1,199</p><button class="btn">Add to Cart</button></div>
+        <div class="product"><img src="imgs/stripe.PNG" alt="Power Strip"><h3>Smart Power Strip</h3><p>PKR 1,499</p><button class="btn">Add to Cart</button></div>
 
-  </div>
+    </div>
 </section>
 
 <section id="why" class="why">
@@ -478,18 +530,69 @@ footer {
     <p>Because we deliver futuristic products, top-notch quality, and secure shopping with unbeatable prices.</p>
 </section>
 
-
-
-
+<section id="personalized-testimonial-section" style="display: none;">
+    <h2>Your Personal DarkZone Review!</h2>
+    <blockquote id="index-testimonial-content">
+        </blockquote>
+    <p id="index-testimonial-author" class="author">
+        </p>
+    <p style="text-align: center; font-size: 0.8em; color: #999; margin-top: 15px;">(Only visible to you on this device)</p>
+</section>
 <section id="testimonials" class="testimonials">
     <h2>Testimonials</h2>
-    <div class="testimonial">
-        <p>“DarkZone Store made my setup look insane — top quality gear!”</p>
-        <strong>— Ahsan</strong>
-    </div>
-    <div class="testimonial">
-        <p>“Fast delivery, amazing prices, and perfect packaging.”</p>
-        <strong>— Sara</strong>
+    
+    <div class="row row-cols-1 row-cols-md-3 g-4 container mx-auto">
+        
+        <div class="col">
+            <div class="testimonial">
+                <p>“DarkZone Store made my setup look insane — top quality gear! The RGB keyboard is flawless.”</p>
+                <div>
+                    <img src="imgs/ahsen.PNG" alt="Ahsan" class="testimonial-author-img">
+                    <strong>— Ahsan</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="testimonial">
+                <p>“Fast delivery, amazing prices, and perfect packaging. I highly recommend the LED monitor.”</p>
+                <div>
+                    <img src="imgs/sara.PNG" alt="Sara" class="testimonial-author-img">
+                    <strong>— Sara</strong>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col">
+            <div class="testimonial">
+                <p>“Absolutely killer customer support! They helped me troubleshoot my smart plug immediately.”</p>
+                <div>
+                    <img src="imgs/rizwan.PNG" alt="Rizwan" class="testimonial-author-img">
+                    <strong>— Rizwan</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="testimonial">
+                <p>“The gaming chair is the most comfortable I’ve ever owned. Worth every rupee!”</p>
+                <div>
+                    <img src="imgs/aysha.PNG" alt="Ayesha" class="testimonial-author-img">
+                    <strong>— Ayesha</strong>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col">
+            <div class="testimonial">
+                <p>“Their prices on SSDs and portable chargers are unbeatable in the market. Great value.”</p>
+                <div>
+                    <img src="imgs/waqar.PNG" alt="Waqar" class="testimonial-author-img">
+                    <strong>— Waqar</strong>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 
@@ -511,6 +614,39 @@ footer {
 
 
 <script>
+// ====== LOCAL STORAGE TESTIMONIAL FEATURE (NEW) ======
+/**
+ * Checks Local Storage for the user's testimonial (saved from contact.html)
+ * and displays it on the index page if available.
+ */
+function loadUserFeedbackForIndex() {
+    // Key used in contact.html: 'userTestimonial'
+    const testimonialData = localStorage.getItem('userTestimonial');
+    const section = document.getElementById('personalized-testimonial-section');
+    
+    if (testimonialData && section) {
+        try {
+            const data = JSON.parse(testimonialData);
+            
+            // Set the content
+            document.getElementById('index-testimonial-content').textContent = `“${data.message}”`;
+            document.getElementById('index-testimonial-author').textContent = `- ${data.name}`;
+            
+            // Make the section visible
+            section.style.display = 'block'; 
+        } catch (e) {
+            console.error("Error parsing user testimonial data:", e);
+            // If data is corrupted, hide the section
+            section.style.display = 'none';
+        }
+    }
+}
+
+// Add loadUserFeedbackForIndex to run on page load
+window.addEventListener('load', loadUserFeedbackForIndex); 
+// =======================================================
+
+
 // ====== Helper Function for Scroll Reveal ======
 function revealOnScroll() {
     const windowHeight = window.innerHeight;
@@ -528,7 +664,7 @@ function revealOnScroll() {
 
     const productGrid = document.querySelector('#product');
     if (productGrid.getBoundingClientRect().top < windowHeight) {
-        document.querySelectorAll(".product").forEach((product, index) => {
+        document.querySelectorAll("#all-products .product").forEach((product, index) => {
             setTimeout(() => {
                 product.style.opacity = '1';
                 product.style.transform = 'scale(1)';

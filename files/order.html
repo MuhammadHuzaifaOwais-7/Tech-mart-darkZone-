@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - DarkZone Store</title>
-    
+<title>Checkout | Secure Payment - DarkZone Store</title>
+<meta name="description" content="Complete your purchase securely at the DarkZone Store checkout. Fast and reliable shipping is available across Pakistan.">
+<meta name="keywords" content="checkout, secure payment, order confirmation, shipping, buy online, cart total">    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
     <style>
@@ -83,6 +84,31 @@
         .navbar ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; }
         .navbar a { color: white; text-decoration: none; transition: 0.3s; }
         
+        /* === NEW STYLING FOR HAMBURGER MENU (.menu-toggle) === */
+        .menu-toggle {
+            /* Default: Hidden on Desktop (Full menu is visible) */
+            display: none;
+            
+            /* Neon Styling (Matching index.html) */
+            background: transparent; 
+            color: #00e5ff; 
+            font-size: 1.5em;
+            line-height: 1; /* Helps vertical alignment of the icon */
+            border: 1px solid #00e5ff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .menu-toggle:hover {
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+        }
+        .menu-toggle:focus {
+            box-shadow: 0 0 0 0.25rem rgba(0, 229, 255, 0.5);
+            outline: none;
+        }
+        /* ======================================================= */
+
         /* ======================================= */
         /* 2. TRUCK BUTTON STYLES (Adjusted)       */
         /* ======================================= */
@@ -172,7 +198,7 @@
                 transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
             }
             .navbar ul.active { max-height: 300px; opacity: 1; }
-            .menu-toggle { display: block; }
+            .menu-toggle { display: block; } /* Show the stylish toggler on mobile */
         }
         @media (max-width: 480px) {
             .container { padding: 10px; }
